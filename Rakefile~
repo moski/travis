@@ -1,0 +1,25 @@
+
+task :default => :test
+
+desc"Probar clase fracciones con documentation"
+task :test do
+sh "rspec -I. spec/tc_fr.rb --format documentation"
+end
+
+$:.unshift File.dirname(__FILE__) + 'lib'
+
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new
+task :default => :spec
+
+desc"Probar Main clase fracciones"
+task :bin do
+sh "cd lib && ./main.rb && cd .."
+end
+
+desc"Probar clase fracciones formato html"
+task :thtml do
+sh "rspec -I. spec/tc_fr.rb --format html"
+end
+
+
